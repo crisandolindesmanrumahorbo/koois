@@ -30,11 +30,14 @@ export async function middleware(request: NextRequest) {
     try {
       const headers = new Headers();
       headers.append("Authorization", `Bearer ${tokenExist}`);
-      const response = await fetch(`${process.env.BASE_URL}/validate`, {
-        method: "GET",
-        headers: headers,
-        cache: "no-store",
-      });
+      const response = await fetch(
+        `${process.env.BASE_URL}/protected/validate`,
+        {
+          method: "GET",
+          headers: headers,
+          cache: "no-store",
+        },
+      );
       if (response.status >= 400) {
         return NextResponse.redirect(
           new URL(`/login?message=session-expired`, request.url),
