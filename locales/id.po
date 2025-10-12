@@ -1,0 +1,20 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2025-10-11 16:15+0700\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: id\n"
+
+#: app/[lang]/login/components/FormLogin.tsx:79
+msgid "Login"
+msgstr "Masuk"
+
+#: app/[lang]/login/components/FormLogin.tsx:70
+msgid "Password"
+msgstr "Password"
+
+#: app/[lang]/login/components/FormLogin.tsx:60
+msgid "Username"
+msgstr "Username"
