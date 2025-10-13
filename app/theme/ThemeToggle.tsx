@@ -2,9 +2,26 @@
 
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <button
+        className="w-14 h-8 bg-gray-300 dark:bg-zinc-800 rounded-full"
+        disabled
+        aria-label="Toggle theme"
+      />
+    );
+  }
+
   const isDark = theme === "dark";
 
   return (
