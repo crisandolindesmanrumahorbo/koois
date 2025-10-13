@@ -1,23 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import IconEnglishFlag from "./icons/IconEnglishFlag";
 import IconIndonesiaFlag from "./icons/IconIndonesiaFlag";
+import { useLingui } from "@lingui/react";
 
 export default function LangToggle() {
-  const router = useRouter();
   const pathname = usePathname();
+  const { i18n } = useLingui();
+
   const langPath = pathname.split("/")[1];
   const [lang, setLang] = useState(langPath);
   const isEnglish = lang === "en";
 
   const handleClick = () => {
     const newLang = lang === "en" ? "id" : "en";
-    setLang(newLang);
     const newPath = pathname.replace(`/${lang}`, `/${newLang}`);
-    router.replace(newPath);
+    i18n.activate(newLang);
+    setLang(newLang);
+    window.history.replaceState(null, "", newPath);
   };
   return (
     <button
