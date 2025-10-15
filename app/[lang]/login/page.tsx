@@ -1,4 +1,3 @@
-import Image from "next/image";
 import LoginNavbar from "../../theme/LoginNavbar";
 import FormLogin from "./components/FormLogin";
 import { withLinguiPage } from "@/app/hoc/useLingui";

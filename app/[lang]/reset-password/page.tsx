@@ -5,7 +5,6 @@ import FormResetPassword from "./components/FormResetPassword";
 type Params = Promise<{ lang: string; symbol: string }>;
 
 //need to add params because used on withLinguiPage
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Login = async (props: {
   params: Params;
   searchParams?: Promise<{

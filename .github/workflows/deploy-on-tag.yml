@@ -42,7 +42,7 @@ jobs:
             git checkout ${{ github.ref_name }}
 
             echo ">>> Installing dependencies"
-            npm ci --production
+            npm ci
 
             echo ">>> Building Next.js app"
             npm run build
