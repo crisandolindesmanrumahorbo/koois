@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import linguiConfig from "./lingui.config";
+import { deleteToken } from "./app/utils/cookies";
 
 const { locales } = linguiConfig;
+
+const PUBLIC = ["login", "reset-password", "forgot-password"];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl; // Get the request path
@@ -39,6 +42,7 @@ export async function middleware(request: NextRequest) {
         },
       );
       if (response.status >= 400) {
+        await deleteToken();
         return NextResponse.redirect(
           new URL(`/login?message=session-expired`, request.url),
         );
@@ -49,7 +53,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Redirect users who are not logged in (except when accessing /login)
-  if (!isAuth && !tokenExist) {
+  if (!PUBLIC.includes(lastPath) && !tokenExist) {
     return NextResponse.redirect(new URL(`/login`, request.url));
   }
 
