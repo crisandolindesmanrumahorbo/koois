@@ -17,7 +17,7 @@ const Login = (_props: { params: Params }) => {
           dark:border-gray-600 border-gray-400 p-12 mx-4 rounded-2xl h-full shadow-xl"
         >
           <div className="h-full w-full">
-            <FormLogin />
+            <FormLogin clientId={process.env.GOOGLE_CLIENT_ID ?? ""} />
           </div>
         </div>
       </div>

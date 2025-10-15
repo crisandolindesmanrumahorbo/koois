@@ -41,6 +41,10 @@ export default function GoogleSignIn({ clientId }: IProps) {
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <GoogleLogin
+        theme="filled_blue"
+        text="continue_with"
+        logo_alignment="left"
+        shape="square"
         onSuccess={async (credentialResponse) => {
           console.log(credentialResponse);
           console.log(parseJwt(credentialResponse.credential ?? ""));
