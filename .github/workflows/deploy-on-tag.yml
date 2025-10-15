@@ -48,6 +48,6 @@ jobs:
             npm run build
 
             echo ">>> Restarting service"
-            sudo systemctl restart koois_web
+            sudo systemctl restart ${{ secrets.SYSTEMD_NAME }}
 
             echo ">>> ✅ Deployment of tag ${{ github.ref_name }} complete!"
