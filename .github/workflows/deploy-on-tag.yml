@@ -1,0 +1,52 @@
+name: Deploy Koois Web on Tag
+
+on:
+  push:
+    tags:
+      - "*" # triggers on any tag push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Verify Build (optional but safe)
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            cd /home/koois/web/koois
+
+            echo ">>> Fetching all tags"
+            git fetch --all --tags
+
+            echo ">>> Checking out tag ${{ github.ref_name }}"
+            git checkout ${{ github.ref_name }}
+
+            echo ">>> Installing dependencies"
+            npm ci --production
+
+            echo ">>> Building Next.js app"
+            npm run build
+
+            echo ">>> Restarting service"
+            sudo systemctl restart koois_web
+
+            echo ">>> ✅ Deployment of tag ${{ github.ref_name }} complete!"
