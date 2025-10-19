@@ -23,18 +23,25 @@ export default function FormLogin({ clientId }: IProps) {
   const [message, setMessage] = useState("");
   const isSessionExpired = myParam === "session-expired";
   const [open, setOpen] = useState(isSessionExpired);
+  const [isLoading, setLoading] = useState(false);
 
   const onLogin = async () => {
+    setLoading(true);
     if (!username || !password) {
       setMessage("Username and password are required");
       return;
     }
     const { data, error } = await login(username, password);
+
     if (error) {
       setMessage(error);
+      setLoading(false);
+
       return;
     }
     await initCookies({ token: data.token });
+    setLoading(false);
+
     router.push("/");
   };
 
@@ -82,7 +89,7 @@ export default function FormLogin({ clientId }: IProps) {
             className="font-semibold bg-blue-800 px-2 py-2 w-full rounded mt-4 cursor-pointer hover:bg-white hover:text-koi-blue border border-blue-800  hover:outline-white text-white"
             type="submit"
           >
-            <Trans>Login</Trans>
+            {isLoading ? <p>loading...</p> : <Trans>Login</Trans>}
           </button>
         </form>
         <div className="dark:border-t-gray-800 border-t-gray-100 border-t-1 my-1"></div>
