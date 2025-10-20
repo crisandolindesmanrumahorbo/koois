@@ -4,13 +4,15 @@ import { useEffect, useState } from "react";
 import IconBurger from "./icons/IconBurger";
 import Sidebar from "./Sidebar";
 import { IProfile, useProfile } from "../store/profile";
+import { Menu } from "../type";
 
 type Props = {
+  menus: Menu[];
   children: React.ReactNode;
   user: IProfile;
 };
 
-export default function NavbarSidebar({ children, user }: Props) {
+export default function NavbarSidebar({ menus, children, user }: Props) {
   const setProfile = useProfile((state) => state.setProfile);
   const [open, setOpen] = useState(false);
 
@@ -31,7 +33,7 @@ export default function NavbarSidebar({ children, user }: Props) {
           </button>
         </div>
       </nav>
-      <Sidebar open={open} />
+      <Sidebar menus={menus} open={open} />
       <div
         className={`transition-all duration-300 ease-in-out mt-20
                 ${open ? "sm:ml-[205px] ml-[50px]" : "ml-[50px]"}`}

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { RolePermission } from "../[lang]/(auth)/layout";
+import { RolePermission } from "../type";
 
 export interface IProfile {
   role_id: string;

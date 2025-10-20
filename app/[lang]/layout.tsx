@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fire",
-  description: "Support by Next and Rust",
+  title: "Koois",
+  description: "Feel and Learn",
 };
 
 export default async function RootLayout({

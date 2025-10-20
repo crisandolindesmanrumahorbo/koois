@@ -1,12 +1,9 @@
 import NavbarSidebar from "@/app/components/NavbarSidebar";
+import { menus } from "@/app/constants/menus";
 import { getTokenCookies, getUser } from "@/app/utils/cookies";
 
 type Props = {
   children: React.ReactNode;
-};
-
-export type RolePermission = {
-  name: string;
 };
 
 export default async function Layout(props: Props) {
@@ -35,5 +32,9 @@ export default async function Layout(props: Props) {
     role_permissions: role_permissions,
   };
 
-  return <NavbarSidebar user={user}>{children}</NavbarSidebar>;
+  return (
+    <NavbarSidebar menus={menus(role_permissions)} user={user}>
+      {children}
+    </NavbarSidebar>
+  );
 }

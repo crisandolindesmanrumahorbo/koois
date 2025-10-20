@@ -1,31 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import IconHome from "./icons/IconHome";
-import IconPieChart from "./icons/IconPieChart";
-import IconCart from "./icons/IconCart";
 import IconSignOut from "./icons/IconSignOut";
+import { Menu } from "../type";
+import { deleteToken } from "../utils/cookies";
 
-export default function Sidebar({ open }: { open: boolean }) {
-  const pathname = usePathname();
-  const lastPath = pathname.split("/").reverse()[0];
+export default function Sidebar({
+  open,
+  menus: menuProps,
+}: {
+  open: boolean;
+  menus: Menu[];
+}) {
   const menus = [
     {
-      name: "Home",
+      name: "Dashboard",
       url: "/",
-      icon: <IconHome isActive={lastPath === "en" || lastPath === "id"} />,
+      icon: <IconHome />,
     },
-    {
-      name: "Portfolio",
-      url: "/portfolio",
-      icon: <IconPieChart isActive={lastPath === "portfolio"} />,
-    },
-    {
-      name: "Order",
-      url: "/order",
-      icon: <IconCart isActive={lastPath === "order"} />,
-    },
+    ...menuProps,
   ];
   return (
     <>
@@ -50,6 +44,9 @@ export default function Sidebar({ open }: { open: boolean }) {
           <Link
             href={"/login"}
             className="mb-[20px] flex gap-2 ml-3 items-center"
+            onClick={async () => {
+              await deleteToken();
+            }}
           >
             <IconSignOut />
             <p className="text-white">Sign out</p>
@@ -79,6 +76,9 @@ export default function Sidebar({ open }: { open: boolean }) {
           <Link
             href={"/login"}
             className="mb-[20px] flex gap-2 ml-3 items-center has-tooltip"
+            onClick={async () => {
+              await deleteToken();
+            }}
           >
             <span className="tooltip py-1 px-2 rounded bg-black text-sm text-white">
               Log out
