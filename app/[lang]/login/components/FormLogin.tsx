@@ -40,6 +40,7 @@ export default function FormLogin({ clientId }: IProps) {
       return;
     }
     await initCookies({ token: data.token });
+    localStorage.setItem("token", data.token);
     setLoading(false);
 
     router.push("/");

@@ -6,6 +6,7 @@ import { LinguiClientProvider } from "../LinguiClientProvider";
 import { initLingui, PageLangParam } from "../initLingui";
 import { PropsWithChildren } from "react";
 import { ThemeProviders } from "../theme/theme-provider";
+import TanstackProvider from "../utils/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +39,9 @@ export default async function RootLayout({
           initialLocale={lang}
           initialMessages={allMessages[lang]!}
         >
-          <ThemeProviders>{children}</ThemeProviders>
+          <ThemeProviders>
+            <TanstackProvider>{children}</TanstackProvider>
+          </ThemeProviders>
         </LinguiClientProvider>
       </body>
     </html>
