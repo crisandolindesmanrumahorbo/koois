@@ -5,6 +5,7 @@ import IconBurger from "./icons/IconBurger";
 import Sidebar from "./Sidebar";
 import { IProfile, useProfile } from "../store/profile";
 import { Menu } from "../type";
+import { usePathname } from "next/navigation";
 
 type Props = {
   menus: Menu[];
@@ -13,6 +14,11 @@ type Props = {
 };
 
 export default function NavbarSidebar({ menus, children, user }: Props) {
+  const pathname = usePathname();
+  const lastPath = pathname?.split("/").reverse()[0] ?? "";
+  const isAuthorized =
+    menus.some((menu) => menu.url === `/${lastPath}`) || lastPath === "en";
+
   const setProfile = useProfile((state) => state.setProfile);
   const [open, setOpen] = useState(false);
 
@@ -38,7 +44,7 @@ export default function NavbarSidebar({ menus, children, user }: Props) {
         className={`transition-all duration-300 ease-in-out mt-20
                 ${open ? "sm:ml-[205px] ml-[50px]" : "ml-[50px]"}`}
       >
-        {children}
+        {isAuthorized ? children : <p>Nope</p>}
       </div>
     </>
   );
