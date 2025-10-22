@@ -2,8 +2,18 @@
 import useGetUsers from "@/app/services/hooks/useGetUsers";
 
 export default function Users({ token }: { token?: string }) {
-  const { isLoading, isFetching, users, refetch } = useGetUsers(token ?? "");
+  const { isLoading, isFetching, users, refetch, isError } = useGetUsers(
+    token ?? "",
+  );
   if (isLoading || isFetching) return <p>Loading...</p>;
+  if (isError)
+    return (
+      <>
+        <p>Error...</p>
+        <button onClick={() => refetch()}>Refetch</button>
+      </>
+    );
+
   return (
     <div>
       <button onClick={() => refetch()}>Refetch</button>

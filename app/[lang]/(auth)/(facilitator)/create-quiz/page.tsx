@@ -1,3 +1,4 @@
+import FormulaEditor from "@/app/components/Quill/FormulaEditor";
 import { withLinguiPage } from "@/app/hoc/useLingui";
 
 type Params = Promise<{ lang: string; symbol: string }>;
@@ -6,6 +7,8 @@ type Params = Promise<{ lang: string; symbol: string }>;
 const ManageQuizPage = (_props: { params: Params }) => {
   return (
     <div>
+      <FormulaEditor />
+
       <p>Manage Quiz</p>
     </div>
   );

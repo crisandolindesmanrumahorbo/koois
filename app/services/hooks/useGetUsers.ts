@@ -2,12 +2,19 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { UserApi } from "../user-api";
 
+export interface IGetUserResponse {
+  username: string;
+  user_id: number;
+  email: string;
+}
+
 const useGetUsers = (token: string) => {
   const {
     data = { data: [] },
     isLoading,
     isFetching,
     refetch,
+    isError,
   } = useSuspenseQuery({
     queryKey: ["users"],
     queryFn: async () => UserApi.getUsers(token),
@@ -16,13 +23,14 @@ const useGetUsers = (token: string) => {
     refetchOnWindowFocus: false,
   });
 
-  const users = (data || []) as Array<unknown>;
+  const users = (data || []) as Array<IGetUserResponse>;
 
   return {
     users,
     isLoading,
     isFetching,
     refetch,
+    isError,
   };
 };
 
