@@ -7,6 +7,10 @@ import { initLingui, PageLangParam } from "../initLingui";
 import { PropsWithChildren } from "react";
 import { ThemeProviders } from "../theme/theme-provider";
 import TanstackProvider from "../utils/provider";
+import "katex/dist/katex.min.css";
+import "@edtr-io/mathquill/build/mathquill.css";
+import "mathquill4quill/mathquill4quill.css";
+import "react-quill-new/dist/quill.snow.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
