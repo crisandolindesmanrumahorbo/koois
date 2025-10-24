@@ -6,9 +6,12 @@ export interface IGetUserResponse {
   username: string;
   user_id: number;
   email: string;
+  provider: string;
+  role_id: number;
+  created_at: string;
 }
 
-const useGetUsers = (token: string) => {
+const useGetUsers = () => {
   const {
     data = { data: [] },
     isLoading,
@@ -17,7 +20,7 @@ const useGetUsers = (token: string) => {
     isError,
   } = useSuspenseQuery({
     queryKey: ["users"],
-    queryFn: async () => UserApi.getUsers(token),
+    queryFn: async () => UserApi.getUsers(),
     staleTime: 1000 * 60 * 5,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
