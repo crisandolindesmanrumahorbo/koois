@@ -39,7 +39,7 @@ export default function FormulaEditor() {
   const options = { displayHistory, operators };
 
   return (
-    <div>
+    <div className="flex-col gap-2">
       <Editor
         value={value}
         setValue={setValue}
@@ -47,19 +47,19 @@ export default function FormulaEditor() {
         key={JSON.stringify(options)}
       />
 
-      <label>
-        Use custom operator buttons:
+      <p>
+        Use custom operator buttons
         <input type="checkbox" className="option" onChange={toggleOperators} />
-      </label>
+      </p>
 
-      <label>
-        Display formula history:
+      <p>
+        Display formula history
         <input
           type="checkbox"
           className="option"
           onChange={toggleDisplayHistory}
         />
-      </label>
+      </p>
       <div dangerouslySetInnerHTML={{ __html: value ?? "" }} />
     </div>
   );

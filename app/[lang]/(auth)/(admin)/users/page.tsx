@@ -6,26 +6,22 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getTokenCookies } from "@/app/utils/cookies";
 
 type Params = Promise<{ lang: string; symbol: string }>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const UserPage = async (_props: { params: Params }) => {
   const queryClient = new QueryClient();
-  const token = await getTokenCookies();
   // clien side only
   // return <Users token={token} />;
   await queryClient.prefetchQuery({
     queryKey: ["users"],
-    queryFn: async () => UserApi.getUsers(token),
+    queryFn: async () => UserApi.getUsers(),
   });
-  const dehydratedState = dehydrate(queryClient);
-  console.log("Server dehydrated:", dehydratedState);
   return (
     // only put this boundary when page have prefetch
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Users token={token} />
+      <Users />
     </HydrationBoundary>
   );
 };

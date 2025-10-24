@@ -41,8 +41,8 @@ export default function NavbarSidebar({ menus, children, user }: Props) {
       </nav>
       <Sidebar menus={menus} open={open} />
       <div
-        className={`transition-all duration-300 ease-in-out mt-20
-                ${open ? "sm:ml-[205px] ml-[50px]" : "ml-[50px]"}`}
+        className={`transition-all duration-300 ease-in-out mt-20 rounded-xl p-4 border border-gray-300 dark:border-gray-600 
+                ${open ? "sm:ml-[205px] ml-[50px]" : "ml-[60px]"} mr-[20px]`}
       >
         {isAuthorized ? children : <p>Nope</p>}
       </div>

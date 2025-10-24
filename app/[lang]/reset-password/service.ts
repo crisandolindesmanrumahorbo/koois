@@ -9,7 +9,6 @@ export const resetPassword = async (token: string, password: string) => {
     method: "POST",
     body,
   });
-  console.log({ response });
   if (response.status >= 200 && response.status < 300) {
     return { data: null, error: null };
   }

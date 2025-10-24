@@ -6,10 +6,9 @@ type Params = Promise<{ lang: string; symbol: string }>;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ManageQuizPage = (_props: { params: Params }) => {
   return (
-    <div>
-      <FormulaEditor />
-
+    <div className="flex-col gap-6">
       <p>Manage Quiz</p>
+      <FormulaEditor />
     </div>
   );
 };
