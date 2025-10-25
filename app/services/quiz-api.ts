@@ -1,9 +1,10 @@
+import { API_CORE } from "../constants/api-url";
 import { getToken } from "../utils/token";
 
 export const QuizApi = {
   getQuizById: async (id: number) => {
     const token = await getToken();
-    const response = await fetch(`http://127.0.0.1:8000/api/quiz/${id}`, {
+    const response = await fetch(`${API_CORE}/api/quiz/${id}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${token}`,

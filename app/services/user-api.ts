@@ -1,9 +1,10 @@
+import { API_AUTH } from "../constants/api-url";
 import { getToken } from "../utils/token";
 
 export const UserApi = {
   getUsers: async () => {
     const token = await getToken();
-    const response = await fetch(`http://localhost:7879/protected/users`, {
+    const response = await fetch(`${API_AUTH}/protected/users`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
