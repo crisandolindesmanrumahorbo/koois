@@ -48,7 +48,7 @@ const Input = forwardRef<HTMLInputElement, IProps>(
           <label
             className={`absolute left-3 transition-all duration-200 ease-in-out pointer-events-none ${
               isFocused || hasValue
-                ? "top-[-8px] text-xs z-10 dark:bg-[var(--foreground)] bg-[var(--background)] px-1"
+                ? "top-[-8px] text-xs z-10 bg-background px-1"
                 : "top-1/2 transform -translate-y-1/2 text-gray-400"
             } ${errorMessage || (isError && "text-red-500")}`}
           >

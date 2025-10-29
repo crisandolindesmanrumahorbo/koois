@@ -8,6 +8,7 @@ import { login } from "../service";
 import { Trans, useLingui } from "@lingui/react/macro";
 import Modal from "@/app/components/Modal";
 import GoogleSignIn from "./GoogleSignin";
+import { Button } from "@/components/ui/button";
 
 interface IProps {
   clientId: string;
@@ -86,12 +87,13 @@ export default function FormLogin({ clientId }: IProps) {
           </div>
           <p className="text-red-400">{message}</p>
 
-          <button
-            className="font-semibold bg-blue-800 px-2 py-2 w-full rounded mt-4 cursor-pointer hover:bg-white hover:text-koi-blue border border-blue-800  hover:outline-white text-white"
+          <Button
+            className="cursor-pointer w-full mt-4"
+            size="lg"
             type="submit"
           >
             {isLoading ? <p>loading...</p> : <Trans>Login</Trans>}
-          </button>
+          </Button>
         </form>
         <div className="dark:border-t-gray-800 border-t-gray-100 border-t-1 my-1"></div>
         <div className="w-full flex justify-center">
