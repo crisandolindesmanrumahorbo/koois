@@ -18,9 +18,7 @@ export default function NavbarSidebar({ menus, children, user }: Props) {
   const lastPath = pathname?.split("/").reverse()[0] ?? "";
   const isAuthorized =
     menus.some((menu) => menu.url === `/${lastPath}`) ||
-    lastPath === "en" ||
-    lastPath === "id";
-
+    lastPath === "dashboard";
   const setProfile = useProfile((state) => state.setProfile);
   const [open, setOpen] = useState(false);
 

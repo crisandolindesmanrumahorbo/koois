@@ -44,7 +44,7 @@ export default function FormLogin({ clientId }: IProps) {
     localStorage.setItem("token", data.token);
     setLoading(false);
 
-    router.push("/");
+    router.push("/dashboard");
   };
 
   return (

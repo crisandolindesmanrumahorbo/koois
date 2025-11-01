@@ -16,7 +16,7 @@ export default function Sidebar({
   const menus = [
     {
       name: "Dashboard",
-      url: "/",
+      url: "/dashboard",
       icon: <IconHome />,
     },
     ...menuProps,

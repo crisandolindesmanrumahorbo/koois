@@ -4,7 +4,14 @@ import { deleteToken } from "./app/utils/cookies";
 
 const { locales } = linguiConfig;
 
-const PUBLIC = ["login", "reset-password", "forgot-password"];
+const PUBLIC = [
+  "login",
+  "reset-password",
+  "forgot-password",
+  "home",
+  "faq",
+  "pricing",
+];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl; // Get the request path
@@ -52,8 +59,10 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  const isLandingPage = lastPath === "en" || lastPath === "id";
+
   // Redirect users who are not logged in (except when accessing /login)
-  if (!PUBLIC.includes(lastPath) && !tokenExist) {
+  if (!PUBLIC.includes(lastPath) && !tokenExist && !isLandingPage) {
     return NextResponse.redirect(new URL(`/login`, request.url));
   }
 

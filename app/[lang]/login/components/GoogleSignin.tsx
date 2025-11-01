@@ -32,7 +32,7 @@ export default function GoogleSignIn({ clientId }: IProps) {
     }
     if (data?.is_registered) {
       await initCookies({ token: data.token });
-      router.push("/");
+      router.push("/dashboard");
       return;
     }
     router.push("/register");
